@@ -12,3 +12,8 @@ int main()
     printf("%lld %.2lf", num, num1);
     return 0;
 }
+
+// Rules for naming variables
+// Variable should be started with letter or _.
+// variable should consist only letter, number, underscore
+// keywords can't be used as variables
