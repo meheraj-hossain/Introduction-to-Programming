@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile and run",
+      "type": "shell",
+      "command": "",
+      "args": [
+        "g++",
+        "-g",
+        "\"${file}\"",  // Add quotes around the input file path to handle spaces
+        "-o",
+        "\"${fileDirname}/${fileBasenameNoExtension}.out\"",  // Add quotes around the output file path
+        "&&",
+        "clear",
+        "&&",
+        "timeout",
+        "10",
+        "/usr/bin/time",
+        "-v",
+        "--output",
+        "sys.txt",
+        "\"${fileDirname}/${fileBasenameNoExtension}.out\"",  // Fix the path of the executable here
+        "<",
+        "input.txt",
+        ">",
+        "output.txt",
+        "&&",
+        "rm",
+        "\"${fileDirname}/${fileBasenameNoExtension}.out\""  // Remove the executable after running
+      ],
+      "presentation": {
+        "reveal": "silent"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": [
+          "relative",
+          "${workspaceRoot}"
+        ],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      },
+      "options": {
+        "cwd": "${fileDirname}"  // Set the current working directory to the source file's directory
+      }
+    }
+  ]
+}
